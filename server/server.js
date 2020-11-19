@@ -1,6 +1,6 @@
 import path from 'path'
 import fs from 'fs'
-
+import logger from './logger';
 import express from 'express'
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
@@ -37,12 +37,14 @@ app.get('/*', (req, res) => {
 
 
   
+
 router.use(
-  express.static(path.resolve(__dirname, '..', 'build'), { maxAge: '30d' })
+  express.static(path.resolve(__dirname, '..', 'build'), { maxAge: '30d' }),
 )
 
 // tell the app to use the above rules
 app.use(router)
+
 
 app.use(express.static('./build'))
 app.listen(PORT, () => {
